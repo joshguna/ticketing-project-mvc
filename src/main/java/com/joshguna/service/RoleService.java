@@ -1,10 +1,8 @@
 package com.joshguna.service;
 
 import com.joshguna.dto.RoleDTO;
-import com.joshguna.dto.UserDTO;
 
-import java.util.List;
-
-public interface RoleService extends CrudService<UserDTO, String> {
+//This class is used to remove code redundancy
+public interface RoleService extends CrudService<RoleDTO, Long> {
 
 }
