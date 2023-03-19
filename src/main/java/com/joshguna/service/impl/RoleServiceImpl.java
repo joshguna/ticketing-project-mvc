@@ -2,9 +2,12 @@ package com.joshguna.service.impl;
 
 import com.joshguna.dto.RoleDTO;
 import com.joshguna.service.RoleService;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class RoleServiceImpl extends AbstractMapService<RoleDTO, Long> implements RoleService {
 
     @Override

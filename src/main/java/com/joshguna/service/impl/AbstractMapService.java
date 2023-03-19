@@ -11,6 +11,7 @@ public abstract class AbstractMapService<T, ID> {
     //No objs needed from here. Only CRUD
     //This is also not interface as there'll be method with implementation
 
+    //This hashmap below is my database
     protected Map<ID, T> map = new HashMap<>();
 
     T save(ID id, T object) {
