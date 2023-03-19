@@ -14,8 +14,8 @@ public class DataGenerator implements CommandLineRunner {
     //We autowire here because don't want to use new Keyword. Tightly couple way:
     //RoleServiceImpl r = new RoleServiceImpl();
 
-    private final RoleService roleService;
-    private final UserService userService;
+    RoleService roleService;
+    UserService userService;
 
     public DataGenerator(RoleService roleService, UserService userService) {
         this.roleService = roleService;

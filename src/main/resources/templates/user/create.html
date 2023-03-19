@@ -32,7 +32,7 @@
                                 <div class="panel-body">
 
                                     <!-- ------------------------FORM START----------------------------- -->
-                                    <form action="#" th:object="${user}">
+                                    <form th:action="@{/user/create}" method="post" th:object="${user}">
                                         <div class="row">
                                             <div class="col-sm-6 col-md-6">
                                                 <div class="form-group">
@@ -83,8 +83,9 @@
                                                 <div class="form-group">
                                                     <label for="repassword" class="col-form-label">Confirm
                                                         Password</label>
-                                                    <input id="repassword" type="password" th:field="*{password}"
-                                                           placeholder="confirm your password" class="form-control">
+                                                    <input id="repassword" type="password"
+                                                           placeholder="confirm your password" th:field="*{password}"
+                                                           class="form-control">
                                                 </div>
                                             </div>
                                         </div>
@@ -94,15 +95,13 @@
                                                 <div class="form-group">
                                                     <label>Gender</label><br>
                                                     <label class="custom-control custom-radio custom-control-inline">
-                                                        <input type="radio" name="radio-inline"
-                                                               th:field="*{gender}" th:value="Male"
-                                                               class="custom-control-input"><span
+                                                        <input type="radio" name="radio-inline" th:field="*{gender}"
+                                                               th:value="MALE" class="custom-control-input"><span
                                                             class="custom-control-label">Male</span>
                                                     </label>
                                                     <label class="custom-control custom-radio custom-control-inline">
-                                                        <input type="radio" name="radio-inline"
-                                                               th:field="*{gender}" th:value="Female"
-                                                               class="custom-control-input"><span
+                                                        <input type="radio" name="radio-inline" th:field="*{gender}"
+                                                               th:value="FEMALE" class="custom-control-input"><span
                                                             class="custom-control-label">Female</span>
                                                     </label>
 
@@ -112,7 +111,7 @@
                                             <div class="col-sm-6 col-md-6">
                                                 <div class="form-group">
                                                     <label>Choose a Role</label>
-                                                    <select name="role" th:field="*{role}" class="custom-select">
+                                                    <select th:field="*{role}" class="custom-select">
                                                         <option th:value="''" th:text="Select"></option>
                                                         <option th:each="role : ${roles}" th:value="${role.id}"
                                                                 th:text="${role.description}"></option>
@@ -171,7 +170,7 @@
                                             <tr th:each="user : ${users}">
                                                 <td th:text="${user.firstName + ' ' + user.lastName}"></td>
                                                 <td th:text="${user.userName}"></td>
-                                                <td th:text="${user.gender.getValue()}"></td>
+                                                <td th:text="${user.gender.value}"></td>
                                                 <td th:text="${user.phone}"></td>
                                                 <td th:text="${user.role.description}"></td>
                                                 <td class="actions">
