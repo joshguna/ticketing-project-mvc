@@ -35,14 +35,14 @@ public class DataGenerator implements CommandLineRunner {
         roleService.save(managerRole);
         roleService.save(employeeRole);
 
-        UserDTO user1 = new UserDTO("Joshgun", "Admin", "joshgun@adm.com", "9991234567", "Abc123", Gender.Male, adminRole, true);
-        UserDTO user2 = new UserDTO("Korvo", "Shlorp", "korvo@shlo.com", "5991230967", "Cbc123", Gender.Male, managerRole, true);
-        UserDTO user3 = new UserDTO("Khang", "Terri", "khang@aga.com", "9998334447", "Ebc123", Gender.FEMALE, managerRole, true);
+        UserDTO user1 = new UserDTO("Joshgun", "Admin", "joshgun@adm.com", "9991234567", "Abc123", Gender.MALE, adminRole, true);
+        UserDTO user2 = new UserDTO("Korvo", "Shlorp", "korvo@shlo.com", "5991230967", "Cbc123", Gender.MALE, managerRole, true);
+        UserDTO user3 = new UserDTO("Khang", "Terri", "khang@aga.com", "9998334447", "Ebc123", Gender.MALE, managerRole, true);
         UserDTO user4 = new UserDTO("Billy", "Lube", "billy@lube.com", "7691234567", "Rbc123", Gender.FEMALE, employeeRole, true);
         UserDTO user5 = new UserDTO("Gayn", "Grey", "gayn@grey.com", "6691234564", "Vbc123", Gender.FEMALE, employeeRole, true);
-        UserDTO user6 = new UserDTO("Matt", "Chill", "chill@mau.com", "3491234562", "Zbc123", Gender.Male, employeeRole, false);
-        UserDTO user7 = new UserDTO("Norris", "Adas", "norris@adas.com", "0991234587", "Xbc123", Gender.Male, employeeRole, false);
-        UserDTO user8 = new UserDTO("Joe", "Lala", "joe@lala.com", "2791234957", "Pbc123", Gender.Male, employeeRole, true);
+        UserDTO user6 = new UserDTO("Matt", "Chill", "chill@mau.com", "3491234562", "Zbc123", Gender.MALE, employeeRole, false);
+        UserDTO user7 = new UserDTO("Norres", "Adas", "norris@adas.com", "0991234587", "Xbc123", Gender.FEMALE, employeeRole, false);
+        UserDTO user8 = new UserDTO("Joe", "Lala", "joe@lala.com", "2791234957", "Pbc123", Gender.MALE, employeeRole, true);
 
         userService.save(user1);
         userService.save(user2);

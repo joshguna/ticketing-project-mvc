@@ -2,9 +2,9 @@ package com.joshguna.enums;
 
 public enum Gender {
 
-    Male("Male"), FEMALE("Female");
+    MALE("Male"), FEMALE("Female");
 
-    private final String value;
+    public final String value;
 
     Gender(String value) {
         this.value = value;
