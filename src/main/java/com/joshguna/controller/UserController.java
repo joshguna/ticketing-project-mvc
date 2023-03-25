@@ -6,10 +6,7 @@ import com.joshguna.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/user")
@@ -40,19 +37,22 @@ public class UserController {
         //When user is added, page needs an empty form. So we need new UserDTO
         //Otherwise form th:object will throw exception as it's bound to Java
 
-//        if (bindingResult.hasErrors()) {
-//            model.addAttribute("user", new UserDTO());
-//            model.addAttribute("roles", roleService.findAll());
-//            userService.save(user);
-//            model.addAttribute("users", userService.findAll());
-//            return "/user/create";
-//        }
-
         //saving to db
         userService.save(user);
-//        System.out.println(user);
+
         //if we redirect then no new DTO needed
         return "redirect:/user/create";
+    }
+
+    @GetMapping("/update/{username}")
+    public String editUser(@PathVariable("username") String username, Model model) {
+
+        model.addAttribute("user", new UserDTO());
+        model.addAttribute("roles", roleService.findAll());
+        model.addAttribute("users", userService.findAll());
+
+        return "/user/update";
+
     }
 
 }
