@@ -54,4 +54,18 @@ public class ProjectController {
         return "redirect:/project/create";
     }
 
+    //Two methods for update:
+    //GET to populate info + POST to submit
+    @GetMapping("/update/{projectCode}")
+    public String editProject(@PathVariable("projectCode") String projectCode, Model model) {
+
+        //lines below for populating info at update page
+        //Except, instead of new DTO we put populated info
+        model.addAttribute("project", projectService.findByID(projectCode));
+        model.addAttribute("managers", userService.findManagers());
+        model.addAttribute("projects", projectService.findAll());
+
+        return "project/update";
+    }
+
 }
