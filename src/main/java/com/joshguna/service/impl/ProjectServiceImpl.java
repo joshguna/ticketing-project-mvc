@@ -2,6 +2,7 @@ package com.joshguna.service.impl;
 
 import com.joshguna.dto.ProjectDTO;
 import com.joshguna.dto.RoleDTO;
+import com.joshguna.enums.Status;
 import com.joshguna.service.ProjectService;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,13 @@ public class ProjectServiceImpl extends AbstractMapService<ProjectDTO, String> i
 
     @Override
     public ProjectDTO save(ProjectDTO object) {
+
+        //Every new project status must be OPEN
+        //Logic below converts new(null) into OPEN status
+        if (object.getProjectStatus() == null) {
+            object.setProjectStatus(Status.OPEN);
+        }
+
         return super.save(object.getProjectCode(), object);
     }
 
