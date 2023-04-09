@@ -44,6 +44,9 @@ public class UserController {
         return "redirect:/user/create";
     }
 
+    //For update method we need GET and POST
+    //GET:   retrieves populated data inside an empty form
+    //POST:  changes data with new info
     @GetMapping("/update/{username}")
     public String editUser(@PathVariable("username") String username, Model model) {
 
@@ -59,6 +62,14 @@ public class UserController {
     public String updateUser(UserDTO user) {
 
         userService.update(user);
+
+        return "redirect:/user/create";
+    }
+
+    @GetMapping("/delete/{username}")
+    public String deleteUser(@PathVariable("username") String username) {
+
+        userService.deleteByID(username);
 
         return "redirect:/user/create";
     }
