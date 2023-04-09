@@ -42,4 +42,13 @@ public class ProjectServiceImpl extends AbstractMapService<ProjectDTO, String> i
     public void deleteByID(String id) {
         super.deleteByID(id);
     }
+
+    //method for completing projects
+    @Override
+    public void complete(ProjectDTO project) {
+        project.setProjectStatus(Status.COMPLETE);
+
+        //code below to save in db, map or elsewhere
+        super.save(project.getProjectCode(), project);
+    }
 }
