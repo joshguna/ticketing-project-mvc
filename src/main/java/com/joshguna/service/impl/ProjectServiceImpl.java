@@ -35,7 +35,19 @@ public class ProjectServiceImpl extends AbstractMapService<ProjectDTO, String> i
 
     @Override
     public void update(ProjectDTO object) {
+
+        //In the form we don't have field for status
+        //We need to save status first, else we get null error
+        //Line below keeps it and saves it
+
+        //FindByID to find through db or map
+        ProjectDTO project = findByID(object.getProjectCode());
+
+        if (object.getProjectStatus() == null)
+            object.setProjectStatus(project.getProjectStatus());
         super.update(object.getProjectCode(), object);
+
+
     }
 
     @Override
