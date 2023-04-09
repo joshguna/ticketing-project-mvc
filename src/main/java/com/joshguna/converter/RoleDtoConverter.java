@@ -10,9 +10,10 @@ import org.springframework.stereotype.Component;
 @ConfigurationPropertiesBinding
 public class RoleDtoConverter implements Converter<String, RoleDTO> {
 
-    //This class is created for converting String from HTML in RoleDTO
+    //This class is created for converting String from HTML to RoleDTO obj
     RoleService roleService;
 
+    //this is for injection: Autowiring
     public RoleDtoConverter(RoleService roleService) {
         this.roleService = roleService;
     }

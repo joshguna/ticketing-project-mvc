@@ -11,4 +11,6 @@ public interface CrudService<T, ID> {
     List<T> findAll();
 
     void deleteByID(ID id);
+
+    void update(T object);
 }
