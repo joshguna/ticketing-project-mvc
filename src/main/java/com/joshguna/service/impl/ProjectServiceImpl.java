@@ -3,9 +3,11 @@ package com.joshguna.service.impl;
 import com.joshguna.dto.ProjectDTO;
 import com.joshguna.dto.RoleDTO;
 import com.joshguna.service.ProjectService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ProjectServiceImpl extends AbstractMapService<ProjectDTO, String> implements ProjectService {
 
     @Override

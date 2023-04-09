@@ -1,12 +1,18 @@
 package com.joshguna.bootstrap;
 
+import com.joshguna.dto.ProjectDTO;
 import com.joshguna.dto.RoleDTO;
 import com.joshguna.dto.UserDTO;
 import com.joshguna.enums.Gender;
+import com.joshguna.enums.Status;
+import com.joshguna.service.ProjectService;
 import com.joshguna.service.RoleService;
 import com.joshguna.service.UserService;
+import org.apache.catalina.Store;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
 
 @Component
 public class DataGenerator implements CommandLineRunner {
@@ -16,10 +22,12 @@ public class DataGenerator implements CommandLineRunner {
 
     RoleService roleService;
     UserService userService;
+    ProjectService projectService;
 
-    public DataGenerator(RoleService roleService, UserService userService) {
+    public DataGenerator(RoleService roleService, UserService userService, ProjectService projectService) {
         this.roleService = roleService;
         this.userService = userService;
+        this.projectService = projectService;
     }
 
     @Override
@@ -52,6 +60,14 @@ public class DataGenerator implements CommandLineRunner {
         userService.save(user6);
         userService.save(user7);
         userService.save(user8);
+
+        ProjectDTO project1 = new ProjectDTO("Spring MVC", "P001", user1, LocalDate.now(), LocalDate.now().plusDays(20), "MVC Proj", Status.OPEN);
+        ProjectDTO project2 = new ProjectDTO("Spring ORM", "P002", user2, LocalDate.now(), LocalDate.now().plusDays(12), "ORM Proj", Status.IN_PROGRESS);
+        ProjectDTO project3 = new ProjectDTO("Spring Container", "P003", user3, LocalDate.now(), LocalDate.now().plusDays(45), "Container Proj", Status.COMPLETE);
+
+        projectService.save(project1);
+        projectService.save(project2);
+        projectService.save(project3);
 
     }
 }
