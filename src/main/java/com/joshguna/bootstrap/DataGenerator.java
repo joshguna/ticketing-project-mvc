@@ -2,11 +2,13 @@ package com.joshguna.bootstrap;
 
 import com.joshguna.dto.ProjectDTO;
 import com.joshguna.dto.RoleDTO;
+import com.joshguna.dto.TaskDTO;
 import com.joshguna.dto.UserDTO;
 import com.joshguna.enums.Gender;
 import com.joshguna.enums.Status;
 import com.joshguna.service.ProjectService;
 import com.joshguna.service.RoleService;
+import com.joshguna.service.TaskService;
 import com.joshguna.service.UserService;
 import org.apache.catalina.Store;
 import org.springframework.boot.CommandLineRunner;
@@ -23,11 +25,13 @@ public class DataGenerator implements CommandLineRunner {
     RoleService roleService;
     UserService userService;
     ProjectService projectService;
+    TaskService taskService;
 
-    public DataGenerator(RoleService roleService, UserService userService, ProjectService projectService) {
+    public DataGenerator(RoleService roleService, UserService userService, ProjectService projectService, TaskService taskService) {
         this.roleService = roleService;
         this.userService = userService;
         this.projectService = projectService;
+        this.taskService = taskService;
     }
 
     @Override
@@ -68,6 +72,16 @@ public class DataGenerator implements CommandLineRunner {
         projectService.save(project1);
         projectService.save(project2);
         projectService.save(project3);
+
+        TaskDTO task1 = new TaskDTO(project1, user8, "Controller", "Request Mapping", Status.IN_PROGRESS, LocalDate.now().minusDays(4));
+        TaskDTO task2 = new TaskDTO(project3, user3, "Configuration", "Database Connection", Status.COMPLETE, LocalDate.now().minusDays(12));
+        TaskDTO task3 = new TaskDTO(project3, user6, "Mapping", "One-To-Many", Status.COMPLETE, LocalDate.now().minusDays(8));
+        TaskDTO task4 = new TaskDTO(project2, user7, "Dependency Injection", "Autowired", Status.IN_PROGRESS, LocalDate.now().minusDays(20));
+
+        taskService.save(task1);
+        taskService.save(task2);
+        taskService.save(task3);
+        taskService.save(task4);
 
     }
 }
