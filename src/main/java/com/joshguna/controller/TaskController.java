@@ -49,7 +49,6 @@ public class TaskController {
         return "redirect:/task/create";
     }
 
-
     @GetMapping("/update/{taskId}")
     public String editTask(@PathVariable("taskId") Long taskId, Model model) {
 
@@ -62,19 +61,11 @@ public class TaskController {
 
     }
 
-//    @PostMapping("/update/{taskId}")
-//    public String updateTask(@PathVariable("taskId") Long taskId, TaskDTO task) {
-//        task.setId(taskId);
-//        taskService.update(task);
-//        return "redirect:/task/create";
-//    }
-
     @PostMapping("/update/{id}")
     public String updateTask(TaskDTO task) {
         taskService.update(task);
         return "redirect:/task/create";
     }
-
 
     @GetMapping("/employee/pending-tasks")
     public String employeePendingTasks(Model model) {
