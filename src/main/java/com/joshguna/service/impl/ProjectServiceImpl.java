@@ -82,25 +82,22 @@ public class ProjectServiceImpl extends AbstractMapService<ProjectDTO, String> i
     @Override
     public List<ProjectDTO> getCountedListOfProjectDTO(UserDTO manager) {
 
-        List<ProjectDTO> projectList =
-                findAll()
-                        .stream()
-                        .filter(project -> project.getAssignedManager().equals(manager))
-                        .map(project -> {
+        List<ProjectDTO> projectList = findAll().stream()
+                .filter(project -> project.getAssignedManager().equals(manager))
+                .map(project -> {
 
-                            List<TaskDTO> taskList = taskService.findTasksByManager(manager);
+                    List<TaskDTO> taskList = taskService.findTasksByManager(manager);
+                    int completeTaskCounts = (int) taskList.stream()
+                            .filter(t -> t.getProject().equals(project) && t.getTaskStatus() == Status.COMPLETE).count();
 
-                            int completeTaskCounts = (int) taskList.stream().filter(t -> t.getProject().equals(project) && t.getTaskStatus() == Status.COMPLETE).count();
+                    int unfinishedTaskCounts = (int) taskList.stream()
+                            .filter(t -> t.getProject().equals(project) && t.getTaskStatus() != Status.COMPLETE).count();
 
-                            int unfinishedTaskCounts = (int) taskList.stream().filter(t -> t.getProject().equals(project) && t.getTaskStatus() != Status.COMPLETE).count();
+                    project.setCompleteTaskCounts(completeTaskCounts);
+                    project.setUnfinishedTaskCounts(unfinishedTaskCounts);
 
-//                            project.setCompleteTaskCounts(completeTaskCounts);
-//                            project.setUnfinishedTaskCounts(unfinishedTaskCounts);
-
-                            return project;
-
-                        }).collect(Collectors.toList());
-
+                    return project;
+                }).collect(Collectors.toList());
 
         return projectList;
     }

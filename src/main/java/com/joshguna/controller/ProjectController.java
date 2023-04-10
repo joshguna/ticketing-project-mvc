@@ -1,6 +1,7 @@
 package com.joshguna.controller;
 
 import com.joshguna.dto.ProjectDTO;
+import com.joshguna.dto.UserDTO;
 import com.joshguna.service.ProjectService;
 import com.joshguna.service.UserService;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/project")
@@ -74,6 +77,17 @@ public class ProjectController {
         projectService.update(project);
         return "redirect:/project/create";
 
+    }
+
+    //Manager project status code below
+    @GetMapping("/manager/project-status")
+    public String getProjectByManager(Model model) {
+
+        UserDTO manager = userService.findByID("khang@aga.com");
+        List<ProjectDTO> projects = projectService.getCountedListOfProjectDTO(manager);
+        model.addAttribute("projects", projects);
+
+        return "/manager/project-status";
     }
 
 }
